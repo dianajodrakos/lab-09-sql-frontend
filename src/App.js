@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Link,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './Header.js';
+import Home from './Home.js';
+import Books from './Books.js';
+import BookDetail from './BookDetail.js';
 import './App.css';
 
 
@@ -12,18 +11,17 @@ export default class App extends Component {
   render() {
 
     return (
-      <Router>
-
-        <div className="App">
-        {/* header */}
-        {/* pages:*/}
-        {/* LIST */}
-        {/* ITEM DETAIL/UPDATE */}
-        {/* CREATE LISTING */}
-        </div>
-      </Router>
+      <div className="App">
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/books" component={Books} />
+            <Route path="/books/:id" component={BookDetail} />
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }
 
-export default App;
