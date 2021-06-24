@@ -17,7 +17,9 @@ export default class BookDetail extends Component {
         category_id: 0,
         price: '',
         stock: false,
-        id: 0,
+        authors: '',
+        categories: '',
+        languages: '',
     }
 
     //component mount
@@ -46,7 +48,6 @@ export default class BookDetail extends Component {
             category_id: book.category_id,
             price: book.price,
             stock: book.stock,
-            id: id,
             authors: authors,
             categories: categories,
             languages: languages,
@@ -60,6 +61,31 @@ export default class BookDetail extends Component {
         this.setState({ [e.target.name]: e.target.value});
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        await editBook(this.props.match.params.id, {
+            sku: this.state.sku, 
+            title: this.state.title, 
+            author_id: this.state.author_id, 
+            image: this.state.image, 
+            description: this.state.description, 
+            pages: this.state.pages, 
+            year: this.state.year, 
+            language_id: this.state.language_id, 
+            publisher: this.state.publisher, 
+            isbn: this.state.isbn, 
+            category_id: this.state.category_id, 
+            price: this.state.price, 
+            stock: this.state.stock, 
+            id: this.props.match.params.id
+        });
+        this.props.history.push('/');
+    }
+
+    handleDelete = async (e) => {
+        await deleteBook(this.state.id);
+        this.props.history.push('/');
+    }
     render() {
         console.log(this.state);
         return (
@@ -85,11 +111,26 @@ export default class BookDetail extends Component {
                 <div>
                     <form>
                         <label>
-                            Description
-                            <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
+                            Description: 
+                            <textarea type="text" size="200" maxLength="512" name="description" value={this.state.description} onChange={this.handleChange} />
                         </label>
-                        <button>Update Listing</button>
+                        <label>
+                            Price: 
+                            <input type="text" name="price" value={this.state.price} onChange={this.handleChange} />
+                        </label>
+                        <div>
+                            <label htmlFor="in-stock">
+                                <input type="radio" id="in-stock" name="stock" value="true" /> In Stock
+                            </label>
+                            <label htmlFor="out-of-stock">
+                                <input type="radio" id="out-of-stock" name="stock" value="false" /> Out of Stock
+                            </label>
+                        </div>
+                        <button type="button" onClick={this.handleSubmit}>Update Listing</button>
                     </form>
+                </div>
+                <div>
+                    <button type="button">Delete Listing</button>
                 </div>
             </div>
         )

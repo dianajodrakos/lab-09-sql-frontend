@@ -23,7 +23,8 @@ export async function createBook(formData) {
 }
 
 //editBook - takes id, form data as argument
-export async function editBook(formData, id) {
+export async function editBook(id, formData) {
+    console.log(id);
     const data = await request
         .put(`${URL}/books/${id}`)
         .send(formData);

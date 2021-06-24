@@ -16,10 +16,10 @@ export default class App extends Component {
         <Router>
           <Header />
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/books" exact component={Books} />
-            <Route path="/books/:id" exact component={BookDetail} />
-            <Route path="/create" exact component={CreateBook} />
+            <Route path="/" exact render={(routerProps) => <Home {...routerProps} />} />
+            <Route path="/books" exact render={(routerProps) => <Books {...routerProps} />} />
+            <Route path="/books/:id" exact render={(routerProps) => <BookDetail {...routerProps} />} />
+            <Route path="/create" exact render={(routerProps) => <CreateBook {...routerProps} />} />
           </Switch>
         </Router>
       </div>
