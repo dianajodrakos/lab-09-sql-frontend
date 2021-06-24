@@ -91,7 +91,7 @@ export default class BookDetail extends Component {
     render() {
         console.log(this.state);
         return (
-            <div>
+            <div className="main">
                 <li className={this.state.category}>
                     <div className="image">
                         <img src={`/assets/${this.state.image}`} alt={this.state.title} />
@@ -104,11 +104,11 @@ export default class BookDetail extends Component {
                         <p className="price">${this.state.price}</p>
                     </div>
                 </li>
+                <div className="update">
                 <p>UPDATE BOOK LISTING</p>
-                <div>
                     <form>
                         <label>
-                            Description: 
+                            Description:<br />
                             <textarea type="text" size="200" maxLength="512" name="description" value={this.state.description} onChange={this.handleChange} />
                         </label>
 
@@ -148,7 +148,7 @@ export default class BookDetail extends Component {
                     </form>
                 </div>
                 <div>
-                    <button type="button">Delete Listing</button>
+                    <button type="button" onClick={this.handleDelete}>Delete Listing</button>
                 </div>
             </div>
         )
