@@ -17,9 +17,9 @@ export default class App extends Component {
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/books" component={Books} />
-            <Route path="/books/:id" component={BookDetail} />
-            <Route path="/create" component={CreateBook} />
+            <Route path="/books" exact component={Books} />
+            <Route path="/books/:id" exact component={BookDetail} />
+            <Route path="/create" exact component={CreateBook} />
           </Switch>
         </Router>
       </div>

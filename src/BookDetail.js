@@ -1,4 +1,3 @@
-import { thisExpression, throwStatement } from '@babel/types';
 import React, { Component } from 'react'
 import { getOneBook, editBook, deleteBook, getAllCategories, getAllAuthors, getAllLanguages } from './fetch-utils.js';
 
@@ -56,30 +55,42 @@ export default class BookDetail extends Component {
     }
 
     //event handlers
-
+    //can you write a generic handleChange function that takes one argument??
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value});
+    }
 
     render() {
-
+        console.log(this.state);
         return (
             <div>
-                UPDATE BOOK LISTING
                 <li className={this.state.category}>
                     <div className="image">
-                        <img src={`./assets/${this.state.image}`} alt={this.state.title} />
+                        <img src={`/assets/${this.state.image}`} alt={this.state.title} />
                     </div>
                     <div className="data">
                         <h3>{this.state.title}</h3>
                         <h4>{this.state.author}</h4>
                         <p className="description">{this.state.description}</p>
                         <p className="metadata">{this.state.pages} pages | Originally Published in {this.state.year} | {this.state.publisher} | {this.state.language} | ISBN-10: {this.state.isbn}</p>
-                        <p className="price">{this.state.price}</p>
-                         {/* <p className="button">
+                        <p className="price">${this.state.price}</p>
+                        {/* <p className="button">
                             <button type="button" className="qty down">-</button>
-                             <input id="1" type="number" min="0" max="10" readonly="true" />
-                             <button type="button" className="qty up">+</button><button type="button" className="add-to-cart">Add to Cart</button>
+                            <input id="1" type="number" min="0" max="10" readonly="true" />
+                            <button type="button" className="qty up">+</button><button type="button" className="add-to-cart">Add to Cart</button>
                          </p> GOTTA BRING THIS FRANKENSTEIN TO LIFE */}
                     </div>
                 </li>
+                <p>UPDATE BOOK LISTING</p>
+                <div>
+                    <form>
+                        <label>
+                            Description
+                            <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
+                        </label>
+                        <button>Update Listing</button>
+                    </form>
+                </div>
             </div>
         )
     }
