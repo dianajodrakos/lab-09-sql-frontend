@@ -5,7 +5,9 @@ import Home from './Home.js';
 import Books from './Books.js';
 import BookDetail from './BookDetail.js';
 import CreateBook from './CreateBook.js';
+import './reset.css';
 import './App.css';
+
 
 
 export default class App extends Component {
@@ -16,10 +18,10 @@ export default class App extends Component {
         <Router>
           <Header />
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/books" component={Books} />
-            <Route path="/books/:id" component={BookDetail} />
-            <Route path="/create" component={CreateBook} />
+            <Route path="/" exact render={(routerProps) => <Home {...routerProps} />} />
+            <Route path="/books" exact render={(routerProps) => <Books {...routerProps} />} />
+            <Route path="/books/:id" exact render={(routerProps) => <BookDetail {...routerProps} />} />
+            <Route path="/create" exact render={(routerProps) => <CreateBook {...routerProps} />} />
           </Switch>
         </Router>
       </div>
