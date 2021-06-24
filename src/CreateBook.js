@@ -42,7 +42,8 @@ export default class CreateBook extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        await createBook(this.props.match.params.id, {
+
+        await createBook({
             sku: this.state.sku, 
             title: this.state.title, 
             author_id: this.state.author_id, 
