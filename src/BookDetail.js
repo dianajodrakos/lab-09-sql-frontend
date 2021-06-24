@@ -83,7 +83,7 @@ export default class BookDetail extends Component {
     }
 
     handleDelete = async (e) => {
-        await deleteBook(this.state.id);
+        await deleteBook(this.props.match.params.id);
         this.props.history.push('/');
     }
     render() {
