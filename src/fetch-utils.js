@@ -31,7 +31,7 @@ export async function editBook(formData, id) {
 }
 
 //deleteBook - takes id as argument?
-export async function deleteBook() {
+export async function deleteBook(id) {
     const data = await request.delete(`${URL}/books/${id}`);
     return data.body;
 }
