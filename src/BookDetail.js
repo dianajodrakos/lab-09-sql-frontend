@@ -1,3 +1,4 @@
+import { thisExpression, throwStatement } from '@babel/types';
 import React, { Component } from 'react'
 import { getOneBook, editBook, deleteBook, getAllCategories, getAllAuthors, getAllLanguages } from './fetch-utils.js';
 
@@ -32,14 +33,17 @@ export default class BookDetail extends Component {
         this.setState({
             sku: book.sku,
             title: book.title,
+            author: book.author,
             author_id: book.author_id,
             image: book.image,
             description: book.description,
             pages: book.pages,
             year: book.year,
+            language: book.language,
             language_id: book.language_id,
             publisher: book.publisher,
             isbn: book.isbn,
+            category: book.category,
             category_id: book.category_id,
             price: book.price,
             stock: book.stock,
@@ -59,7 +63,23 @@ export default class BookDetail extends Component {
         return (
             <div>
                 UPDATE BOOK LISTING
-                {/* map out a specific book based on params */}
+                <li className={this.state.category}>
+                    <div className="image">
+                        <img src={`./assets/${this.state.image}`} alt={this.state.title} />
+                    </div>
+                    <div className="data">
+                        <h3>{this.state.title}</h3>
+                        <h4>{this.state.author}</h4>
+                        <p className="description">{this.state.description}</p>
+                        <p className="metadata">{this.state.pages} pages | Originally Published in {this.state.year} | {this.state.publisher} | {this.state.language} | ISBN-10: {this.state.isbn}</p>
+                        <p className="price">{this.state.price}</p>
+                         {/* <p className="button">
+                            <button type="button" className="qty down">-</button>
+                             <input id="1" type="number" min="0" max="10" readonly="true" />
+                             <button type="button" className="qty up">+</button><button type="button" className="add-to-cart">Add to Cart</button>
+                         </p> GOTTA BRING THIS FRANKENSTEIN TO LIFE */}
+                    </div>
+                </li>
             </div>
         )
     }
